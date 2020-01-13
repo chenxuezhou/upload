@@ -12,6 +12,8 @@ load data2 c2
 load data3 c3
 load data4 c4
 
+
+
 %四个特征信号矩阵合成一个矩阵
 data(1:500,:)=c1(1:500,:);
 data(501:1000,:)=c2(1:500,:);
@@ -19,7 +21,9 @@ data(1001:1500,:)=c3(1:500,:);
 data(1501:2000,:)=c4(1:500,:);
 
 %从1到2000间随机排序
+%rand产生两千个随机整组
 k=rand(1,2000);
+%m是向量值，n是未排序前值对应下标
 [m,n]=sort(k);
 
 %输入输出数据
@@ -47,7 +51,7 @@ output_train=output(n(1:1500),:)';
 input_test=input(n(1501:2000),:)';
 output_test=output(n(1501:2000),:)';
 
-%输入数据归一化
+%输入数据归一化，作用：数量级差别较大而造成网络预测误差较大。
 [inputn,inputps]=mapminmax(input_train);
 
 %% 网络结构初始化
